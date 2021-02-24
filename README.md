@@ -1,83 +1,80 @@
-# POSTRequest Plugin for Spigot 1.8/1.9/1.10/1.11/1.12
+# POSTRequest Плагин для Spigot 1.8/1.9/1.10/1.11/1.12
 
     Version: 1.4
-    Author: bbruno5
-    E-mail: bbruno5.ever@gmail.com
-    Author Site: https://bbruno5.us.to
-    Company: B5 Team
-    Company Site: https://b5team.com
+    Author: Raven
+    E-mail: support@neko-world.ru
+    Author Site: https://neko-wordl.ru
+    Company: Raven Team
+  
 
-# ABOUT
-This plugin was made to send POST requests for a external PHP server, sending data from Minecraft Servers as you want. Works with HTTP and HTTPS protocols, accepting as many arguments as you want per command, equivalent to variables sent to external server.
+# О нас
+Этот плагин был создан для отправки POST-запросов на внешний PHP-сервер, отправляя данные с серверов Minecraft так, как вы хотите. Работает с протоколами HTTP и HTTPS, принимая столько аргументов, сколько вы хотите для каждой команды, что эквивалентно переменным, отправленным на внешний сервер.
 
 # FEATURES
-- Lag-free;
-- Secure encrypted data;
-- Easy to use;
-- Customizable data;
-- Infinite arguments;
-- Highly customized API.
-- Inside game command;
-- Console command;
-- Remote console command (using Rcon connection).
+- Без запаздывания;
+- Защищенные зашифрованные данные;
+- Простота в использовании;
+- Настраиваемые данные;
+- Бесконечные аргументы;
+- Высоко настроенный API.
+- внутриигровая команда;
+- Консольная команда;
+- Дистанционное управление пультом (с помощью RCON связи).
 
-# DOWNLOAD
-The latest compiled version can be found on the following link:
+# Скачать
+Последнюю скомпилированную версию можно найти по следующей ссылке:
 https://www.spigotmc.org/resources/postrequest.42863/
 
-# INSTALL
-Download and put the file POSTRequest.jar into your plugins folder and then, restart your server.
+# Установка
+Скачай и поставь файл POSTRequest.jar зайдите в папку плагинов, а затем перезагрузите сервер.
 
-# CONFIGURE
-Open plugins/POSTRequest/config.txt and edit it putting your URL and your password in the correct fields. Make sure that don't forget to put 'http://' or 'https://' before the url.
+# НАСТРОЙКА
+Открыть plugins/POSTRequest/config.txt и отредактируйте его, поместив свой URL-адрес и пароль в правильные поля. Убедитесь, что не забудьте поставить " http://" или " https://" перед URL-адресом.
+После изменения файла сохраните его и снова перезагрузите сервер.
+Необходимо еще настроить свой PHP-файл на внешнем сервере. Этот плагин шифрует ваш пароль с помощью хэша SHA-512, поэтому ваш PHP-файл должен иметь тот же пароль, настроенный как переменная, и, во второй момент, должен быть зашифрован и сравнен с хэшем со стороны сервера Minecraft, чтобы гарантировать ваш эксклюзивный доступ при настройке важных переменных, таких как денежные плагины.
 
-After change the file, save it and restart your server again.
-
-Is necessary yet, configure your PHP file on external server. This plugin, encrypt your password with the hash SHA-512, so your PHP file need to have the same password configured as a variable and, in a second moment, must be encrypted and compared with the hash from Minecraft server side, to guarantee your exclusive access when setting important variables, like of monetary plugins.
-
-A sample PHP file can be found with this plugin.
-
-# COMMAND
-The syntax to use the plugin is very simple. To use variables, you can call this plugin from another, or just use global variables, like @p, @a, etc. With plugins like Skript, there are innumerable possibilities.
+Пример PHP-файла можно найти с помощью этого плагина.
+# Команды
+Синтаксис использования плагина очень прост. Чтобы использовать переменные, вы можете вызвать этот плагин из другого или просто использовать глобальные переменные, такие как @p, @a и т. Д. С такими плагинами, как Skript, есть бесчисленные возможности.
 
 ```
-/pr <argument1> <argument2> <argument3> ...
+/pr <аргумент1> <аргумент2> <аргумент3> ...
 ```
 
-Example:
+Пример:
 
 ```
-/pr @p buy Vip
+/pr @p купить Vip
 ```
 
-With the command above, you send to external server, the name of player, the string 'buy' and the string 'Vip'.
+С помощью приведенной выше команды вы отправляете на внешний сервер имя игрока, строку " buy "и строку "Vip".
 
-# PERMISSION
-To use this plugin and send commands, you need to have the following permission configured on your permission system:
+# РАЗРЕШЕНИЕ
+Чтобы использовать этот плагин и отправлять команды, вам необходимо иметь следующие разрешения, настроенные в вашей системе разрешений:
 
 ```
-postrequest.pr.send (default op)
+postrequest.pr.send (по умолчанию op)
 ```
 
-Be very careful when setting this permission, if your intents are for send important data values.
+Будьте очень осторожны при установке этого разрешения, если ваши намерения заключаются в отправке важных значений данных.
 
 # API
-To use API, it is very easy, and add more features, like multiple URL and different passwords per URL.
+Использовать API очень просто, и добавить дополнительные функции, такие как несколько URL-адресов и разные пароли на каждый URL-адрес.
 
-Example of use:
+Пример использования:
 ```
-public static void callPOSTRequest(String protocol, String url, String password, String[] args) {
- 
-    POSTRequestAPI.makeRequest(protocol, url, password, args);
+государственной статической силы callPOSTRequest(строки протокола, строка url, строка пароля, строка[] аргументы) {
+
+POSTRequestAPI.makeRequest(протокол, url, пароль, args);
 }
-```
-protocol: must be 'http' or 'https'
-url: the complete url that will receive the data request
-password: the pure password for the given url, without encryption (this will be did inside API)
-args: as many as you want to pass to that url set before, containing any necessary values
+``
+протокол: должен быть 'http' или 'https'
+url: полный URL, который получит запрос данных
+пароль: чистый пароль для данного URL, без шифрования (это будет сделано внутри API)
+args: столько, сколько вы хотите передать в этот URL-адрес, установленный ранее, содержащий любые необходимые значения
 
 
-# DONATE
-I don't made this plugin for gain anything, except facilities on my server, but if you donate me any quantity, I will can buy (someday) a new computer. The mine is dying :s But feel free to use without donating ^_^
+# ПОЖЕРТВОВАТЬ
+Я не сделал этот плагин для получения чего-либо, кроме объектов на моем сервере, но если вы пожертвуете мне какое-либо количество, я смогу купить (когда-нибудь) новый компьютер. Шахта умирает :s Но не стесняйтесь использовать ее без пожертвований ^_^
 
 https://b5team.com/donate
